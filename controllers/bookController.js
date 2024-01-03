@@ -39,10 +39,10 @@ exports.book_list = asyncHandler(async (req, res, next) => {
 
   /*
   // doing it with mongodb driver (no mongoose)
+  require("dotenv").config();
   const books = [];
 
-  const url =
-    "mongodb+srv://naouduser:0YVd9W1HlIZUOZ3l@cluster0.un19s6m.mongodb.net/?retryWrites=true&w=majority";
+  const url = process.env.MONGO_URL;
   const client = new MongoClient(url);
 
   async function run() {
