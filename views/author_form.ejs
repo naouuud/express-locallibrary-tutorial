@@ -1,0 +1,42 @@
+<%- include("header"); -%> 
+
+<% const [first_name, family_name, date_of_birth, date_of_death] = Object.keys(author).length > 0 ? [author.first_name, author.family_name, author.birth_yyyy_mm_dd, author.death_yyyy_mm_dd] : [null, null, null, null] %>
+
+<h1><%= title %>: <%= author.name %></h1>
+
+<form method="post">
+  <div class="form-group">
+    <label for="first_name"
+      >First Name: <input type="text" id="first_name" class="form-control"
+      name="first_name" value="<%= first_name %>"></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="family_name"
+      >Family Name: <input type="text" id="family_name" class="form-control"
+      name="family_name" value="<%= family_name %>"></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="date_of_birth"
+      >Date of Birth: <input type="date" id="date_of_birth" class="form-control"
+      name="date_of_birth" value="<%= date_of_birth %>"></label>
+  </div>
+
+  <div class="form-group">
+    <label for="date_of_death"
+      >Date of Death: <input type="date" id="date_of_death" class="form-control"
+      name="date_of_death" value="<%= date_of_death %>"></label
+    >
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<% for (const error of errors) { %>
+<ul>
+  <li><%= error.msg %></li>
+</ul>
+<% } %> <%- include("footer"); -%>

@@ -1,0 +1,16 @@
+<%- include("header"); -%>
+
+<h1><%= title %></h1>
+
+<% if (authors.length) { %>
+    <ul>
+        <% for (const author of authors) { %>
+            <li><a href="<%= author.url %>"><%= author.name %></a>&nbsp;<%= author.lifespan_short %></li>
+        <% } %>
+    </ul>
+<% } else { %>
+    <p>There are no authors in this library.</p>
+<% } %>
+
+
+<%- include("footer"); -%>

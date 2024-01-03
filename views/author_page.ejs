@@ -1,0 +1,19 @@
+<%- include("header"); -%>
+
+<h1>Author: <%= author.name %></h1>
+<p><%= author.lifespan_long %></p>
+
+<h3>Books</h3>
+
+<% if (books.length) { %>
+        <% for (const book of books) { %>
+            <p><a href="<%= book.url %>"><%- book.title %></a></p>
+            <p><%- book.summary %></p>
+        <% } %>
+<% } else { %>
+    <p>There are no books by this author.</p>
+<% } %>
+<hr>
+<p><a href="<%= author.url %>/delete">Delete this author</a> | <a href="<%= author.url %>/update">Update this author</a></p>
+
+<%- include("footer"); -%>

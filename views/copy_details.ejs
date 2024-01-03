@@ -1,0 +1,21 @@
+<%- include("header"); -%>
+
+<h1>ID: <%= copy.id %></h1>
+
+<p><strong>Title: </strong><a href="<%= copy.book.url %>"><%= copy.book.title %></a></p>
+<p><strong>Imprint: </strong><%= copy.imprint %></p>
+<p><strong>Status:</strong>
+<% if (copy.status === "Available") { %>
+    <span class="text-success"><%= copy.status %></span></p>
+<% } else if (copy.status === "Maintenance") { %>
+    <span class="text-danger"><%= copy.status %></span></p>
+<% } else { %>
+    <span class="text-warning"><%= copy.status %></span></p>
+<% } %>
+<% if (copy.status != "Available") { %>
+    <p><strong>Due back:</strong> <%= copy.formatted_date %></p>
+<% } %>
+<hr>
+<p><a href="<%= copy.url %>/delete">Delete this copy</a> | <a href="<%= copy.url %>/update">Update this copy</a></p>
+
+<%- include("footer"); -%>

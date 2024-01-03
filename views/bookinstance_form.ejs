@@ -1,0 +1,57 @@
+<%- include("header"); %>
+
+<h1><%= title %></h1>
+
+<form method="post">
+<div class="form-group">
+<label for="book">Book: </label>
+    <select name="book" id="book" class="form-control">
+        <option value="">Please select book:</option>
+        <% for (const book of books) {
+            if (book._id.toString() == bookInstance.book) { %>
+                <option value="<%= book._id %>" selected><%- book.title %></option>
+            <% } else { %>
+                <option value="<%= book._id %>"><%- book.title %></option>
+            <% } %>
+        <% } %>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="imprint">Imprint: </label>
+        <input type="text" class="form-control" id="imprint" name="imprint" placeholder="Publisher and date information"
+        value="<%= bookInstance.imprint %>">
+    
+</div>
+
+<div class="form-group">
+    <label for="due_back">Date available: </label>
+        <input type="date" class="form-control" id="due_back" name="due_back" value="<%= bookInstance.due_back_yyyy_mm_dd %>">
+</div>
+
+<div class="form-group">
+<label for="status">Status: </label>
+<select name="status" id="status" class="form-control">
+<option value="">--Select a status--- </option>
+    <% for (const val of ["Available", "Maitenance", "Loaned", "Reserved"]) {
+        if (val === bookInstance.status) { %>
+            <option value="<%= val %>" selected><%= val %></option>
+        <% } else { %>
+        <option value="<%= val %>"><%= val %></option>
+        <% }
+    } %>
+</select>    
+</div>
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+<% for (const error of errors) { %>
+<ul>
+  <li><%= error.msg %></li>
+</ul>
+<% } %> <%- include("footer"); -%>
+
+<%- include("footer"); %>

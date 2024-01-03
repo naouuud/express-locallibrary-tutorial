@@ -1,0 +1,47 @@
+<%- include("header"); -%>
+
+
+<h1>Title: <%- book.title %></h1>
+
+<p><strong>Author: </strong><a href="<%= book.author.url %>"><%= book.author.name %></a></p>
+
+<p><strong>Summary: </strong><%- book.summary %></p>
+
+<p><strong>ISBN: </strong><%= book.isbn %></p>
+
+<p><strong>Genre(s): </strong>
+<% for (let i in book.genre) { %>
+    <a href="<%= book.genre[i].url %>"><%= book.genre[i].name %></a>
+    <% if (i < book.genre.length - 1) { %>
+        ,
+    <% } %>
+<% } %>
+</p>
+
+<h3>Copies</h3>
+
+<% if (inventory.length) { %>
+        <% for (const copy of inventory) { %>
+            <hr>
+            <% if (copy.status === "Available") { %>
+                <p class="text-success"><%= copy.status %></p>
+            <% } else if (copy.status === "Maintenance") { %>
+                <p class="text-danger"><%= copy.status %></p>
+            <% } else { %>
+                <p class="text-warning"><%= copy.status %></p>
+            <% } %>
+                <p><strong>Imprint: </strong><%= copy.imprint %></p>
+            <% if (copy.status != "Available") { %>
+                <p><strong>Due back:</strong> <%= copy.formatted_date %></p>
+            <% } %>
+                <p><strong>Id: </strong><a href="<%= copy.url %>"><%= copy._id %></a></p>
+        <% } %>
+<% } else { %>
+    <p>There are no copies of this book in the library.</p>
+<% } %>
+<hr>
+<a href="<%= book.url %>/delete">Delete this book</a> | 
+<a href="<%= book.url %>/update">Update this book</a>
+
+
+<%- include("footer"); -%>

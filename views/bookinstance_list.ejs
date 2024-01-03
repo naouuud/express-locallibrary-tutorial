@@ -1,0 +1,28 @@
+<%- include("header"); -%>
+
+<h1><%= title %></h1>
+
+<% if (inventoryItems.length) { %>
+    <ul>
+        <% for (const copy of inventoryItems) { %>
+            <li><a href="<%= copy.url %>"><%= copy.book.title %>: <%= copy.imprint %></a> -&nbsp;
+            <% if (copy.status === "Available") { %>
+                <span class="text-success"><%= copy.status %></span>
+            <% } else if (copy.status === "Maintenance") { %>
+                <span class="text-danger"><%= copy.status %></span>
+            <% } else { %>
+                <span class="text-warning"><%= copy.status %></span>
+            <% } %>
+            <% if (copy.status != "Available") { %>
+                <span>(Due: <%= copy.formatted_date %>)</span>
+            <% } %>
+            </li>
+        <% } %>
+    </ul>
+<% } else { %>
+    <p>There are no book copies in this library.</p>
+<% } %>
+
+
+<%- include("footer"); -%>
+

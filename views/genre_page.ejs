@@ -1,0 +1,19 @@
+<%- include("header"); -%>
+
+<h1><%= title %></h1>
+
+<h3>Books</h3>
+
+<% if (books.length) { %>
+        <% for (const book of books) { %>
+            <p><a href="<%= book.url %>"><%- book.title %></a></p>
+            <p><%- book.summary %></p>
+        <% } %>
+<% } else { %>
+    <p>There are no books in this genre.</p>
+<% } %>
+<hr>
+<p><a href="<%= genre.url %>/delete">Delete this Genre</a> | <a href="<%= genre.url %>/update">Update this Genre</a></p>
+
+
+<%- include("footer"); -%>

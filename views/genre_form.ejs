@@ -1,0 +1,18 @@
+<%- include("header"); -%>
+
+<% const value = Object.keys(genre).length > 0 ? genre.name : "" %>
+
+<h1><%= title %></h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Genre: <input type="text" id="name" class="form-control" name="name" required value="<%= value %>"</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<% for (const error of errors) { %>
+    <ul>
+        <li><%= error.msg %></li>
+    </ul>
+<% } %>

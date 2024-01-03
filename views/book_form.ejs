@@ -1,0 +1,82 @@
+<%- include("header"); -%>
+
+<h1><%= title %></h1>
+
+<form method="post">
+  <div class="form-group">
+    <label for="title"
+      >Title: <input type="text" id="title" class="form-control" name="title"
+      placeholder="Name of book" value="<%= book.title ? book.title : ""
+      %>"></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="author"
+      >Author:
+      <select id="author" class="form-control" name="author">
+        <option value="">Please select an author:</option>
+        <% for (const author of authors) { if (author.selected) { %>
+        <option value="<%= author._id %>" selected><%= author.name %></option>
+        <% } else { %>
+        <option value="<%= author._id %>"><%= author.name %></option>
+        <% } } %>
+      </select></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="summary"
+      >Summary: <input type="textarea" id="summary" class="form-control"
+      name="summary" placeholder="Summary" value="<%= book.summary ?
+      book.summary : "" %>"></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="isbn"
+      >ISBN: <input type="text" id="isbn" class="form-control" name="isbn"
+      placeholder="ISBN13" value="<%= book.isbn ? book.isbn : ""%>"></label
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="genre"
+      >Genre:
+      <div>
+        <% for (const genre of genres) { %>
+        <div style="display: inline; padding-right: 10px">
+          <% if (genre.checked) { %>
+          <input
+            type="checkbox"
+            name="genre"
+            id="<%= genre._id %>"
+            value="<%= genre._id %>"
+            class="checkbox-input"
+            checked
+          />
+          <% } else { %>
+          <input
+            type="checkbox"
+            name="genre"
+            id="<%= genre._id %>"
+            value="<%= genre._id %>"
+            class="checkbox-input"
+          />
+          <% } %>
+          <label for="<%= genre._id %>">&nbsp;<%= genre.name %></label>
+        </div>
+        <% } %>
+      </div>
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<% for (const error of errors) { %>
+<ul>
+  <li><%= error.msg %></li>
+</ul>
+
+<% } %> <%- include("footer"); -%>

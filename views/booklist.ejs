@@ -1,0 +1,15 @@
+<%- include("header"); -%>
+
+<h1><%= title %></h1>
+
+<% if(books.length) { %> 
+<%      for (let book of books) { %>
+            <li><a href="<%= book.url %>"</a><%- book.title %></a>
+                (<%= book.author.name %>)
+            </li>
+<%      } %>
+<% } else { %>
+    <p>There are no books.</p>
+<% } %>
+
+<%- include("footer"); -%>
