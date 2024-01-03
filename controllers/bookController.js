@@ -119,7 +119,7 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
 // Handle book create on POST.
 exports.book_create_post = [
   (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     next();
   },
   (req, res, next) => {
@@ -242,11 +242,11 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 
 exports.book_update_post = [
   (req, res, next) => {
-    console.log(req.body.genre);
+    // console.log(req.body.genre);
     if (!Array.isArray(req.body.genre)) {
       req.body.genre = req.body.genre === undefined ? [] : [req.body.genre];
     }
-    console.log(req.body.genre);
+    // console.log(req.body.genre);
     next();
   },
 
@@ -267,8 +267,8 @@ exports.book_update_post = [
     });
 
     const errors = validationResult(req);
-    console.log(req.body.genre);
-    console.log(book.genre);
+    // console.log(req.body.genre);
+    // console.log(book.genre);
 
     if (!errors.isEmpty()) {
       const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
